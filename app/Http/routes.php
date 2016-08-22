@@ -15,10 +15,9 @@ Route::get('contact','FrontController@contact');
 Route::get('reviews','FrontController@reviews');
 Route::get('admin','FrontController@admin');
 Route::get('usuario/usuario', 'UsuarioController@index');
+Route::get('pelicula', 'MovieController@index');
 
-Route::resource('movie', 'MovieController', ['only' => [
-    'index', 'show', 'create'
-]]);
+Route::resource('movie', 'MovieController');
 Route::resource('movie', 'MovieController', ['except' => [
     'store', 'update', 'destroy'
 ]]);
