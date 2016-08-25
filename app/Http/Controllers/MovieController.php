@@ -7,6 +7,8 @@ use Cinema\Http\Requests;
 use Cinema\Genre;
 use Cinema\Movie;
 use Cinema\Http\Controllers\Controller;
+use Session;
+use Redirect;
 
 class MovieController extends Controller
 {
@@ -64,7 +66,9 @@ class MovieController extends Controller
      */
     public function edit($id)
     {
-        //
+        $movie = Movie::find($id);
+        $genre = Genre::lists('genre', 'id');
+        return view('peliculas.edit', ['movie'=>$movie, 'genres'=>$genre]);
     }
 
     /**
@@ -76,7 +80,12 @@ class MovieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $movie = Movie::find($id);
+        $movie->fill($request->all());
+        $movie->save();
+        Session::flash('message', 'Pelicula Editada Correctamente');
+
+        return redirect::to('/movie');
     }
 
     /**
@@ -87,6 +96,9 @@ class MovieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Movie::destroy($id);
+        Session::flash('message', 'Pelicula Eliminada Correctamente');
+
+        return redirect::to('/movie');
     }
 }

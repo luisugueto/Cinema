@@ -1,12 +1,11 @@
 @extends('layouts.admin')
-
+@if(Session::has('message'))
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  {{Session::get('message')}}
+</div>
+@endif
 @section('content')
-	<div id="msg-success" class="alert alert-success alert-dismissible" role="alert" style="display:none">
-		<strong>Genero Editado Correctamente</strong>
-	</div>
-	<div id="msg-delete" class="alert alert-warning alert-dismissible" role="alert" style="display:none">
-		<strong>Genero Eliminado Correctamente</strong>
-	</div>
 	<table class="table">
 		<thead>
 			<th>Nombre</th>
@@ -23,7 +22,7 @@
 			<td>
 				<img src="movies/{{$movie->path}}" alt="" style="width: 100px; height:100px;">
 			</td>
-			<td>Editar</td>
+			<td>{!!link_to_route('movie.edit', $title = 'Editar', $parameters = $movie->id, $attributes = ['class'=>'btn btn-primary'])!!}</td>
 		</tbody>
 	@endforeach
 	</table>

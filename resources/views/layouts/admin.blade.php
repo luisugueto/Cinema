@@ -72,7 +72,7 @@
                                     <a href="{{ route('movie.create') }}"><i class='fa fa-plus fa-fw'></i> Agregar</a>
                                 </li>
                                 <li>
-                                    <a href="#"><i class='fa fa-list-ol fa-fw'></i> Peliculas</a>
+                                    <a href="{{ route('movie.index') }}"><i class='fa fa-list-ol fa-fw'></i> Peliculas</a>
                                 </li>
                             </ul>
                         </li>
